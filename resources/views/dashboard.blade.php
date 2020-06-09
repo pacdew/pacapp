@@ -67,12 +67,12 @@
                     </div>
                 </div>
                 <div class="card-footer">
+                    <h1>Weight Tracker</h1>
                     <a href="/weightTrackers/create" class="btn btn-primary">Add Weight</a>
-                    <button id="chart_btn" onclick="drawChart()">click for chart</button>
                     <div id="weight_chart" style="height: 600px" hidden ></div>
-                    <br>
                     <script> var weightData = new Array(["Date", "Weight"]);</script>
                     @if(count($weightTrackers) > 0 )
+                    <button id="chart_btn" onclick="drawChart()">click for chart</button>
                         <table class="table table-striped">
                             @foreach ($weightTrackers as $weightTracker)
                             <script>
@@ -109,6 +109,7 @@
                                     legend: { position: 'bottom' }
                                 };
 
+                                chart_btn.hidden = true;
                                 var chart = new google.visualization.LineChart(document.getElementById('weight_chart'));
 
                                 chart.draw(data, options);
