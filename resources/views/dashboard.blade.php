@@ -72,15 +72,23 @@
                     <div id="weight_chart" style="height: 600px" hidden ></div>
                     <br>
                     <script> var weightData = new Array(["Date", "Weight"]);</script>
-                    @if(count($weightTrackers) > 0 && count($weightTrackers) < 8)
+                    @if(count($weightTrackers) > 0 )
                         <table class="table table-striped">
                             @foreach ($weightTrackers as $weightTracker)
-                            <!--
-                                <td>Weight: {{$weightTracker->weight}}<br> Logged on: {{ date('F d, Y', strtotime($weightTracker->created_at)) }}<br> by {{$weightTracker->user->name}}</td>
-                            -->
                             <script>
                                 var temp = ['{{ date('F d', strtotime($weightTracker->created_at)) }}', {{$weightTracker->weight}}];
-                                weightData.push(temp);
+                                if(weightData.length < 8){
+                                    weightData.push(temp);
+                                }
+                                else if(weightData.length >= 8){
+                                    weightData.shift();
+                                    weightData.push(temp);
+                                    weightData[0] = ["Date", "Weight"]
+                                }
+                                else{
+                                    //do nothing or spurt out an error.
+                                    console.log("ERROR CREATING GRAPH!")
+                                }
                             </script>
                             @endforeach
                         </table>

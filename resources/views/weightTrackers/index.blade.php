@@ -16,6 +16,9 @@
         @if(!auth::guest())
             <p>Because you are logged in you are able to input your weight for the day.</p>
             <a href="/weightTrackers/create" class="btn btn-primary">Here</a>
+            @foreach ($weightTrackers as $weightTracker)
+              <!--br><td>Weight: {{$weightTracker->weight}}<br> Logged on: {{ date('F d, Y', strtotime($weightTracker->created_at)) }}<br> by {{$weightTracker->user->name}}</td>-->
+            @endforeach
         @else
             <p>Without logging in you are unable to log your weight for the day!</p>
             <p>Please log in or register.</p>

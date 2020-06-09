@@ -18,7 +18,7 @@ class WeightTrackersController extends Controller
     {
         //
         //display a graph of the past week of weights input...
-        $weightTrackers = WeightTracker::orderBy('created_at', 'desc')->take(7)->get();
+        $weightTrackers = WeightTracker::orderBy('created_at', 'asc')->take(7)->get();
         return view('weightTrackers.index')->with('weightTrackers', $weightTrackers);
     }
 

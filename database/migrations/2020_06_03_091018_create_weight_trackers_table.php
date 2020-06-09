@@ -15,7 +15,7 @@ class CreateWeightTrackersTable extends Migration
     {
         Schema::create('weight_trackers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('u_id');
+            $table->integer('user_id');
             $table->double('weight');
             $table->timestamps();
         });
